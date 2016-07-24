@@ -1,0 +1,39 @@
+
+GET           /                                   controllers.Application.index
+
+# Accounts
+POST          /v/authenticate/:provider           controllers.Accounts.authenticate(provider)
+POST          /v/install                          controllers.Accounts.install()
+PUT           /v/register                         controllers.Accounts.register()
+
+# Users
+PUT           /v/users/:id/connect                controllers.Users.connect(id: Long)
+PUT           /v/users/:id/exit                   controllers.Users.exit(id: Long)
+
+GET           /v/users/:id/score                  controllers.Users.getScore(id: Long)
+GET           /v/users/:id/details                controllers.Users.getUserDetails(id: Long)
+
+GET           /v/users/:keyword/search            controllers.Users.search(keyword)
+
+# Games
+POST          /v/games                            controllers.Games.start()
+PUT           /v/games/:id/end                    controllers.Games.end(id: Long)
+
+GET           /v/games/rankings                   controllers.Games.getRankings()
+
+# Friends
+GET           /v/users/:id/friends                controllers.Friends.list(id: Long)
+POST          /v/friends/:id/add                  controllers.Friends.add(id: Long)
+DELETE        /v/friends/:id/remove               controllers.Friends.remove(id: Long)
+
+GET           /v/users/:id/friends_ranking        controllers.Friends.getRankings(id: Long)
+
+# JavaScript routes object
+GET           /jsroutes.js                        controllers.Application.jsRoutes
+
+# Map static resources from the /public folder to the /assets URL path
+# GET           /assets/v/*file                controllers.Assets.versioned(path="/public", file: Asset)
+# GET           /assets/*file                  controllers.Assets.at(path="/public", file)
+
+# Enable webjar based resources to be returned
+# GET           /webjars/*file                 controllers.WebJarAssets.at(file)
